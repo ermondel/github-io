@@ -1,0 +1,56 @@
+{
+  "name": "github-io",
+  "version": "0.1.1",
+  "private": true,
+  "homepage": "https://github.com/ermondel/github-io#readme",
+  "description": "ermondel.github.io source",
+  "author": "ermondel",
+  "license": "CC BY-NC 4.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "watch": "cross-env NODE_ENV=development webpack --mode development --watch",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
+    "stats": "webpack --json > stats/stats.json && webpack-bundle-analyzer stats/stats.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ermondel/github-io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ermondel/github-io/issues"
+  },
+  "browserslist": "> 0.25%, not dead",
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/polyfill": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^4.3.0",
+    "eslint": "^7.9.0",
+    "eslint-loader": "^4.0.2",
+    "file-loader": "^6.1.0",
+    "html-webpack-plugin": "^4.4.1",
+    "mini-css-extract-plugin": "^0.11.2",
+    "node-sass": "^4.14.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "sass-loader": "^10.0.2",
+    "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^4.2.0",
+    "webpack": "^4.44.1",
+    "webpack-bundle-analyzer": "^3.8.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
