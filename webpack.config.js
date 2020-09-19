@@ -73,7 +73,9 @@ function getPlugins() {
 
   plugins.push(
     new HtmlWebpackPlugin({
+      inject: 'body',
       template: './src/index.html',
+      filename: 'index.html',
       minify: { collapseWhitespace: isProd },
     })
   );
@@ -123,7 +125,15 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|svg|gif)$/,
-        use: ['file-loader'],
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'assets/images/',
+            },
+          },
+        ],
       },
       {
         test: /\.(ttf|woff|woff2|eot)$/,
@@ -141,6 +151,10 @@ module.exports = {
           loader: 'babel-loader',
           options: babelOptions('@babel/preset-react'),
         },
+      },
+      {
+        test: /\.html$/,
+        use: ['html-loader'],
       },
     ],
   },
