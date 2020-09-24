@@ -154,6 +154,7 @@ body {
   z-index: 100;
   overflow: auto;
   background-color: #333333;
+  visibility: hidden;
 }
 
 .gallery__list {
@@ -199,6 +200,10 @@ body {
     color: yellow;
     border-bottom-color: yellow;
   }
+}
+
+.gallery__loader {
+  color: white;
 }
 
 @media (min-width: 500px) {
