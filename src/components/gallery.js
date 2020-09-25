@@ -1,15 +1,6 @@
 function onOpenClickHandler() {
   this.galleryContainer.style.visibility = 'visible';
-
-  if (!this.loadedImages.length) {
-    loadImages(
-      this.images,
-      this.loadedImages,
-      this.loaderCounter,
-      this.imgClassName,
-      this.onLoadGallery
-    );
-  }
+  if (!this.loadedImages.length) this.loadImages();
 }
 
 function onCloseClickHandler() {
@@ -22,9 +13,26 @@ function onLoadGallery() {
   this.loadedImages.forEach((image) => {
     const item = document.createElement('div');
     item.className = this.itemClassName;
+    if (this.onImgClickCallback) item.style.cursor = 'pointer';
     item.appendChild(image);
     this.galleryList.appendChild(item);
   });
+}
+
+function onGalleryListPress(event) {
+  if (event.keyCode === 13) this.onGalleryListClick(event);
+}
+
+function onGalleryListClick(event) {
+  const tag = event.target.tagName;
+  if (tag && tag.toLowerCase() === 'img') {
+    this.onGalleryItemClick(event.target);
+  }
+}
+
+function onGalleryItemClick(img) {
+  this.onCloseClickHandler();
+  this.onImgClickCallback(img);
 }
 
 function addBtnOpenToPage(textValue, container, onClickHandler) {
@@ -34,17 +42,21 @@ function addBtnOpenToPage(textValue, container, onClickHandler) {
   container.appendChild(btn);
 }
 
-function loadImages(images, loadedImages, loaderCounter, className, callback) {
-  images.forEach((image) => {
+function loadImages() {
+  const self = this;
+
+  this.images.forEach((image) => {
     const newImg = document.createElement('img');
     newImg.setAttribute('alt', 'photo');
     newImg.setAttribute('id', image.id);
-    newImg.className = className;
+    newImg.setAttribute('tabindex', '0');
+    newImg.className = this.imgClassName;
     newImg.src = image.path;
     newImg.onload = function () {
-      loadedImages.push(this);
-      loaderCounter.textContent = loadedImages.length + '/' + images.length;
-      if (loadedImages.length === images.length) callback();
+      self.loadedImages.push(this);
+      const text = self.loadedImages.length + '/' + self.images.length;
+      self.loaderCounter.textContent = text;
+      if (self.loadedImages.length === self.images.length) self.onLoadGallery();
     };
   });
 }
@@ -64,6 +76,12 @@ function Gallery(config) {
   this.onOpenClickHandler = onOpenClickHandler.bind(this);
   this.onCloseClickHandler = onCloseClickHandler.bind(this);
   this.onLoadGallery = onLoadGallery.bind(this);
+  this.onGalleryListClick = onGalleryListClick.bind(this);
+  this.onGalleryListPress = onGalleryListPress.bind(this);
+  this.onGalleryItemClick = onGalleryItemClick.bind(this);
+  this.loadImages = loadImages.bind(this);
+  this.onImgClickCallback = config.callbacks.onImgClick;
+  this.activeImage = config.active;
 
   if (!this.galleryContainer) {
     this.errors.push('[GALLERY][ERROR][NOT FOUND] gallery layer');
@@ -103,6 +121,12 @@ function Gallery(config) {
 
   if (!this.errors.length) {
     this.btnClose.addEventListener('click', this.onCloseClickHandler);
+
+    if (this.onImgClickCallback) {
+      this.galleryList.addEventListener('keyup', this.onGalleryListPress);
+      this.galleryList.addEventListener('click', this.onGalleryListClick);
+    }
+
     addBtnOpenToPage('Gallery', this.btnOpenContainer, this.onOpenClickHandler);
   }
 }
