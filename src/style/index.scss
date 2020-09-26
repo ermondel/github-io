@@ -164,24 +164,28 @@ body {
 }
 
 .gallery__item {
+  padding: 0;
+  background: transparent;
+
   box-sizing: border-box;
   border: 1px solid transparent;
   width: 50%;
+  cursor: pointer;
+  position: relative;
 
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+
+  &:focus {
+    outline: 1px solid white;
+  }
 }
 
 .gallery__img {
   width: 100%;
   height: auto;
   display: block;
-
-  &:focus {
-    outline: none;
-    opacity: 0.5;
-  }
 }
 
 .gallery__btns {

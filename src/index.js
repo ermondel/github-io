@@ -4,7 +4,7 @@ import images from './components/images';
 
 const mainImage = document.getElementById('main_image');
 
-const onImgClick = (image) => (mainImage.src = image.src);
+const onImgClick = (src) => (mainImage.src = src);
 
 const selectors = {
   layer: '.gallery',
@@ -20,7 +20,6 @@ const mainGallery = new Gallery({
   classes: { item: 'gallery__item', img: 'gallery__img' },
   callbacks: { onImgClick },
   images,
-  active: mainImage.src,
 });
 
 if (mainGallery.errors) {
