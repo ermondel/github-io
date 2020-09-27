@@ -212,6 +212,19 @@ body {
 
 .gallery__loader {
   color: white;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gallery__loader {
+  text-align: center;
+}
+
+.gallery__loader__counter {
+  font-size: 90%;
+  color: lightgrey;
 }
 
 @media (min-width: 500px) {
