@@ -37,7 +37,7 @@ function loadGalleryImages() {
 
   self.galleryImageList.forEach((image) => {
     const newImg = document.createElement('img');
-    newImg.setAttribute('alt', 'photo');
+    newImg.setAttribute('alt', image.alt);
     newImg.className = self.galleryItemImage;
     newImg.src = image.path;
 
