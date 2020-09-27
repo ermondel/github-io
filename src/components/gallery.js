@@ -1,54 +1,54 @@
-function onOpenClickHandler() {
-  this.galleryContainer.style.visibility = 'visible';
-  if (!this.loadedImages.length) this.loadImages();
+function btnOpenClickHandler() {
+  this.galleryMainLayer.style.visibility = 'visible';
+  if (!this.loadedImages.length) this.loadGalleryImages();
 }
 
-function onCloseClickHandler() {
-  this.galleryContainer.style.visibility = 'hidden';
+function btnCloseClickHandler() {
+  this.galleryMainLayer.style.visibility = 'hidden';
 }
 
-function onLoadGallery() {
-  this.loaderContainer.style.display = 'none';
+function galleryImagesLoaded() {
+  this.progressBarContainer.style.display = 'none';
 
   this.loadedImages.forEach((image) => {
     const newBtnImg = document.createElement('button');
-    newBtnImg.className = this.itemClassName;
+    newBtnImg.className = this.galleryItemElement;
     newBtnImg.setAttribute('value', image.src);
     newBtnImg.appendChild(image);
 
-    this.galleryList.appendChild(newBtnImg);
+    this.galleryItemList.appendChild(newBtnImg);
   });
 }
 
-function onGalleryItemClick(event) {
+function galleryItemClickHandler(event) {
   const tag = event.target.tagName ? event.target.tagName.toLowerCase() : '';
 
   if (tag === 'img') {
-    this.onCloseClickHandler();
-    this.onImgClickCallback(event.target.src);
+    this.btnCloseClickHandler();
+    this.imageClickHandler(event.target.src);
   } else if (tag === 'button') {
-    this.onCloseClickHandler();
-    this.onImgClickCallback(event.target.value);
+    this.btnCloseClickHandler();
+    this.imageClickHandler(event.target.value);
   }
 }
 
-function loadImages() {
-  const gallery = this;
+function loadGalleryImages() {
+  const self = this;
 
-  gallery.images.forEach((image) => {
+  self.galleryImageList.forEach((image) => {
     const newImg = document.createElement('img');
     newImg.setAttribute('alt', 'photo');
-    newImg.className = gallery.imgClassName;
+    newImg.className = self.galleryItemImage;
     newImg.src = image.path;
 
     newImg.onload = function () {
-      gallery.loadedImages.push(this);
+      self.loadedImages.push(this);
 
-      const loaded = gallery.loadedImages.length;
-      const queue = gallery.images.length;
+      const loaded = self.loadedImages.length;
+      const queue = self.galleryImageList.length;
 
-      gallery.loaderCounter.textContent = loaded + '/' + queue;
-      if (loaded === queue) gallery.onLoadGallery();
+      self.progressBarCounter.textContent = loaded + '/' + queue;
+      if (loaded === queue) self.galleryImagesLoaded();
     };
   });
 }
@@ -57,79 +57,78 @@ function addBtnOpenToPage() {
   const btn = document.createElement('button');
   const text = document.createElement('span');
 
-  btn.className = this.btnOpenClassName;
-  text.className = this.btnOpenTextClassName;
+  btn.className = this.btnOpenElement;
+  text.className = this.btnOpenInnerText;
 
   text.appendChild(document.createTextNode(this.btnOpenText));
   btn.setAttribute('title', this.btnOpenText);
-  btn.addEventListener('click', this.onOpenClickHandler);
+  btn.addEventListener('click', this.btnOpenClickHandler);
 
   btn.appendChild(text);
   this.btnOpenContainer.appendChild(btn);
 }
 
-function validateConfig() {
-  const messages = [
-    '[GALLERY][ERROR][NOT FOUND] gallery layer',
-    '[GALLERY][ERROR][NOT FOUND] loading bar',
-    '[GALLERY][ERROR][NOT FOUND] loading counter',
-    '[GALLERY][ERROR][NOT FOUND] close button',
-    '[GALLERY][ERROR][NOT FOUND] block for open button',
-    '[GALLERY][ERROR][NOT FOUND] block for gallery list',
-    '[GALLERY][ERROR][NOT FOUND] item class name',
-    '[GALLERY][ERROR][NOT FOUND] image class name',
-    '[GALLERY][ERROR][NOT FOUND] images for gallery',
-    '[GALLERY][ERROR][NOT FOUND] image selection callback',
-    '[GALLERY][ERROR][NOT FOUND] class for the open button',
-    '[GALLERY][ERROR][NOT FOUND] class for button text',
-  ];
+function checkConfig() {
+  const info = '[GALLERY][ERROR][NOT FOUND] ';
+  const images = this.galleryImageList;
 
-  if (!this.galleryContainer) this.errors.push(messages[0]);
-  if (!this.loaderContainer) this.errors.push(messages[1]);
-  if (!this.loaderCounter) this.errors.push(messages[2]);
-  if (!this.btnClose) this.errors.push(messages[3]);
-  if (!this.btnOpenContainer) this.errors.push(messages[4]);
-  if (!this.galleryList) this.errors.push(messages[5]);
-  if (!this.itemClassName) this.errors.push(messages[6]);
-  if (!this.imgClassName) this.errors.push(messages[7]);
-  if (!this.images.length) this.errors.push(messages[8]);
-  if (!this.onImgClickCallback) this.errors.push(messages[9]);
-  if (!this.btnOpenClassName) this.errors.push(messages[10]);
-  if (!this.btnOpenTextClassName) this.errors.push(messages[11]);
+  if (!images || !images.length) this.errors.push(info + 'image list');
+  if (!this.galleryMainLayer) this.errors.push(info + 'gallery layer');
+  if (!this.galleryItemList) this.errors.push(info + 'item list -> class');
+  if (!this.galleryItemElement) this.errors.push(info + 'item -> class');
+  if (!this.galleryItemImage) this.errors.push(info + 'image -> class');
+  if (!this.btnOpenContainer) this.errors.push(info + 'button -> open -> container');
+  if (!this.btnOpenElement) this.errors.push(info + 'button -> open -> class');
+  if (!this.btnOpenInnerText) this.errors.push(info + 'button -> open -> inner');
+  if (!this.btnOpenTextValue) this.errors.push(info + 'button -> open -> text');
+  if (!this.btnCloseElement) this.errors.push(info + 'button -> close -> class');
+  if (!this.progressBarContainer) this.errors.push(info + 'progress bar');
+  if (!this.progressBarCounter) this.errors.push(info + 'progress bar -> counter');
+  if (!this.imageClickHandler) this.errors.push(info + 'image click handler');
+}
 
-  return this.errors.length > 0 ? false : true;
+function selectElements() {
+  const info = '[GALLERY][ERROR][SELECT] ';
+  const progressBar = `.${this.progressBarContainer}`;
+
+  this.galleryMainLayer = document.querySelector(`.${this.galleryMainLayer}`);
+  this.galleryItemList = document.querySelector(`.${this.galleryItemList}`);
+  this.btnOpenContainer = document.querySelector(`.${this.btnOpenContainer}`);
+  this.btnCloseElement = document.querySelector(`.${this.btnCloseElement}`);
+  this.progressBarContainer = document.querySelector(progressBar);
+  this.progressBarCounter = document.querySelector(`.${this.progressBarCounter}`);
+
+  if (!this.galleryMainLayer) this.errors.push(info + 'gallery layer');
+  if (!this.galleryItemList) this.errors.push(info + 'item list');
+  if (!this.btnOpenContainer) this.errors.push(info + 'button -> open -> container');
+  if (!this.btnCloseElement) this.errors.push(info + 'button -> close -> class');
+  if (!this.progressBarContainer) this.errors.push(info + 'progress bar');
+  if (!this.progressBarCounter) this.errors.push(info + 'progress bar -> counter');
 }
 
 function Gallery(config) {
   this.errors = [];
   this.loadedImages = [];
-  this.btnOpenText = 'change picture';
 
-  this.images = config.images;
-  this.itemClassName = config.classes.item;
-  this.imgClassName = config.classes.img;
-  this.onImgClickCallback = config.callbacks.onImgClick;
-  this.btnOpenClassName = config.classes.btnopen;
-  this.btnOpenTextClassName = config.classes.btntext;
+  this.checkConfig = checkConfig.bind(this);
+  this.selectElements = selectElements.bind(this);
 
-  this.galleryContainer = document.querySelector(config.selectors.layer);
-  this.btnClose = document.querySelector(config.selectors.close);
-  this.btnOpenContainer = document.querySelector(config.selectors.open);
-  this.galleryList = document.querySelector(config.selectors.list);
-  this.loaderContainer = document.querySelector(config.selectors.loader);
-  this.loaderCounter = document.querySelector(config.selectors.counter);
+  for (let item in config) {
+    this[item] = config[item];
+  }
+  this.checkConfig();
+  this.selectElements();
 
-  this.onOpenClickHandler = onOpenClickHandler.bind(this);
-  this.onCloseClickHandler = onCloseClickHandler.bind(this);
-  this.onGalleryItemClick = onGalleryItemClick.bind(this);
-  this.validateConfig = validateConfig.bind(this);
-  this.onLoadGallery = onLoadGallery.bind(this);
-  this.loadImages = loadImages.bind(this);
-  this.addBtnOpenToPage = addBtnOpenToPage.bind(this);
+  if (!this.errors.length) {
+    this.btnOpenClickHandler = btnOpenClickHandler.bind(this);
+    this.btnCloseClickHandler = btnCloseClickHandler.bind(this);
+    this.galleryImagesLoaded = galleryImagesLoaded.bind(this);
+    this.galleryItemClickHandler = galleryItemClickHandler.bind(this);
+    this.loadGalleryImages = loadGalleryImages.bind(this);
+    this.addBtnOpenToPage = addBtnOpenToPage.bind(this);
 
-  if (this.validateConfig()) {
-    this.btnClose.addEventListener('click', this.onCloseClickHandler);
-    this.galleryList.addEventListener('click', this.onGalleryItemClick);
+    this.btnCloseElement.addEventListener('click', this.btnCloseClickHandler);
+    this.galleryItemList.addEventListener('click', this.galleryItemClickHandler);
     this.addBtnOpenToPage();
   }
 }

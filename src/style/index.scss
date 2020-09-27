@@ -192,7 +192,7 @@ body {
   display: block;
 }
 
-.gallery__btns {
+.gallery__cnt-close {
   text-align: right;
   padding: 20px;
 }
@@ -214,24 +214,21 @@ body {
   }
 }
 
-.gallery__loader {
+.gallery__pbar {
   color: white;
   height: 50%;
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.gallery__loader {
-  text-align: center;
-}
-
-.gallery__loader__counter {
+.gallery__pbar-counter {
   font-size: 90%;
   color: lightgrey;
 }
 
-.btn-close {
+.gallery__btn-open {
   border: none;
   background: none;
   margin: 3px;
@@ -271,14 +268,14 @@ body {
   &:focus:before,
   &:hover:after,
   &:focus:after,
-  &:hover .btn-close__text,
-  &:focus .btn-close__text {
+  &:hover .gallery__txt-open,
+  &:focus .gallery__txt-open {
     background-color: black;
     color: black;
   }
 }
 
-.btn-close__text {
+.gallery__txt-open {
   line-height: 3px;
   font-size: 3px;
   height: 3px;

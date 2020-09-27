@@ -4,30 +4,25 @@ import images from './components/images';
 
 const mainImage = document.getElementById('main_image');
 
-const onImgClick = (src) => (mainImage.src = src);
+const changeMainImage = (src) => (mainImage.src = src);
 
-const selectors = {
-  layer: '.gallery',
-  open: '.gallery-btn',
-  close: '.gallery__btn-close',
-  loader: '.gallery__loader',
-  counter: '.gallery__loader__counter',
-  list: '.gallery__list',
+const config = {
+  galleryImageList: images,
+  galleryMainLayer: 'gallery',
+  galleryItemList: 'gallery__list',
+  galleryItemElement: 'gallery__item',
+  galleryItemImage: 'gallery__img',
+  btnOpenContainer: 'gallery__cnt-open',
+  btnOpenElement: 'gallery__btn-open',
+  btnOpenInnerText: 'gallery__txt-open',
+  btnOpenTextValue: 'change picture',
+  btnCloseElement: 'gallery__btn-close',
+  progressBarContainer: 'gallery__pbar',
+  progressBarCounter: 'gallery__pbar-counter',
+  imageClickHandler: changeMainImage,
 };
 
-const classes = {
-  item: 'gallery__item',
-  img: 'gallery__img',
-  btnopen: 'btn-close',
-  btntext: 'btn-close__text',
-};
-
-const mainGallery = new Gallery({
-  selectors,
-  classes,
-  callbacks: { onImgClick },
-  images,
-});
+const mainGallery = new Gallery(config);
 
 if (mainGallery.errors) {
   for (let i in mainGallery.errors) console.log(mainGallery.errors[i]);
