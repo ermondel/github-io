@@ -15,9 +15,16 @@ const selectors = {
   list: '.gallery__list',
 };
 
+const classes = {
+  item: 'gallery__item',
+  img: 'gallery__img',
+  btnopen: 'btn-close',
+  btntext: 'btn-close__text',
+};
+
 const mainGallery = new Gallery({
   selectors,
-  classes: { item: 'gallery__item', img: 'gallery__img' },
+  classes,
   callbacks: { onImgClick },
   images,
 });

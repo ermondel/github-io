@@ -170,14 +170,18 @@ body {
   box-sizing: border-box;
   border: 1px solid transparent;
   width: 50%;
-  cursor: pointer;
   position: relative;
 
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
 
+  &:hover {
+    cursor: pointer;
+  }
+
   &:focus {
+    cursor: pointer;
     outline: 1px solid white;
   }
 }
@@ -225,6 +229,63 @@ body {
 .gallery__loader__counter {
   font-size: 90%;
   color: lightgrey;
+}
+
+.btn-close {
+  border: none;
+  background: none;
+  margin: 3px;
+  padding: 9px 5px;
+  min-width: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 3px;
+
+  &:before {
+    content: ' ';
+    background-color: grey;
+    height: 3px;
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  &:after {
+    content: ' ';
+    background-color: grey;
+    height: 3px;
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    background-color: lightgrey;
+    cursor: pointer;
+  }
+
+  &:hover:before,
+  &:focus:before,
+  &:hover:after,
+  &:focus:after,
+  &:hover .btn-close__text,
+  &:focus .btn-close__text {
+    background-color: black;
+    color: black;
+  }
+}
+
+.btn-close__text {
+  line-height: 3px;
+  font-size: 3px;
+  height: 3px;
+  display: block;
+  width: 100%;
+  color: grey;
+  background-color: grey;
 }
 
 @media (min-width: 500px) {

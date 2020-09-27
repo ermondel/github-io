@@ -53,11 +53,19 @@ function loadImages() {
   });
 }
 
-function addBtnOpenToPage(textValue, container, onClickHandler) {
+function addBtnOpenToPage() {
   const btn = document.createElement('button');
-  btn.appendChild(document.createTextNode(textValue));
-  btn.addEventListener('click', onClickHandler);
-  container.appendChild(btn);
+  const text = document.createElement('span');
+
+  btn.className = this.btnOpenClassName;
+  text.className = this.btnOpenTextClassName;
+
+  text.appendChild(document.createTextNode(this.btnOpenText));
+  btn.setAttribute('title', this.btnOpenText);
+  btn.addEventListener('click', this.onOpenClickHandler);
+
+  btn.appendChild(text);
+  this.btnOpenContainer.appendChild(btn);
 }
 
 function validateConfig() {
@@ -72,6 +80,8 @@ function validateConfig() {
     '[GALLERY][ERROR][NOT FOUND] image class name',
     '[GALLERY][ERROR][NOT FOUND] images for gallery',
     '[GALLERY][ERROR][NOT FOUND] image selection callback',
+    '[GALLERY][ERROR][NOT FOUND] class for the open button',
+    '[GALLERY][ERROR][NOT FOUND] class for button text',
   ];
 
   if (!this.galleryContainer) this.errors.push(messages[0]);
@@ -84,6 +94,8 @@ function validateConfig() {
   if (!this.imgClassName) this.errors.push(messages[7]);
   if (!this.images.length) this.errors.push(messages[8]);
   if (!this.onImgClickCallback) this.errors.push(messages[9]);
+  if (!this.btnOpenClassName) this.errors.push(messages[10]);
+  if (!this.btnOpenTextClassName) this.errors.push(messages[11]);
 
   return this.errors.length > 0 ? false : true;
 }
@@ -91,11 +103,14 @@ function validateConfig() {
 function Gallery(config) {
   this.errors = [];
   this.loadedImages = [];
+  this.btnOpenText = 'change picture';
 
   this.images = config.images;
   this.itemClassName = config.classes.item;
   this.imgClassName = config.classes.img;
   this.onImgClickCallback = config.callbacks.onImgClick;
+  this.btnOpenClassName = config.classes.btnopen;
+  this.btnOpenTextClassName = config.classes.btntext;
 
   this.galleryContainer = document.querySelector(config.selectors.layer);
   this.btnClose = document.querySelector(config.selectors.close);
@@ -110,11 +125,12 @@ function Gallery(config) {
   this.validateConfig = validateConfig.bind(this);
   this.onLoadGallery = onLoadGallery.bind(this);
   this.loadImages = loadImages.bind(this);
+  this.addBtnOpenToPage = addBtnOpenToPage.bind(this);
 
   if (this.validateConfig()) {
     this.btnClose.addEventListener('click', this.onCloseClickHandler);
     this.galleryList.addEventListener('click', this.onGalleryItemClick);
-    addBtnOpenToPage('Gallery', this.btnOpenContainer, this.onOpenClickHandler);
+    this.addBtnOpenToPage();
   }
 }
 
