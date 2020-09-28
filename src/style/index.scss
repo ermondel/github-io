@@ -3,6 +3,14 @@
 
 $color-main: #778899;
 $color-icon: lightgrey;
+$color-bg-gallery: #333333;
+$color-item-shadow: rgba(0, 0, 0, 0.75);
+$color-item-outline: white;
+$color-btn-default: grey;
+$color-btn-close-hover: yellow;
+$color-btn-open-hover: black;
+$color-progress-bar: white;
+$color-progress-counter: lightgrey;
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -14,7 +22,9 @@ body {
   margin: 0 auto;
 }
 
-// header
+/**
+ * header
+ */
 
 .header {
   position: relative;
@@ -75,7 +85,9 @@ body {
   }
 }
 
-// icons
+/**
+ * icons
+ */
 
 .bottom {
   position: fixed;
@@ -143,7 +155,9 @@ body {
   }
 }
 
-// gallery
+/**
+ * gallery
+ */
 
 .gallery {
   position: fixed;
@@ -153,7 +167,7 @@ body {
   bottom: 0;
   z-index: 100;
   overflow: auto;
-  background-color: #333333;
+  background-color: $color-bg-gallery;
   visibility: hidden;
 }
 
@@ -172,9 +186,9 @@ body {
   width: 50%;
   position: relative;
 
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 5px 0px $color-item-shadow;
+  -moz-box-shadow: 0px 0px 5px 0px $color-item-shadow;
+  box-shadow: 0px 0px 5px 0px $color-item-shadow;
 
   &:hover {
     cursor: pointer;
@@ -182,7 +196,7 @@ body {
 
   &:focus {
     cursor: pointer;
-    outline: 1px solid white;
+    outline: 1px solid $color-item-outline;
   }
 }
 
@@ -200,8 +214,8 @@ body {
 .gallery__btn-close {
   border: none;
   background-color: transparent;
-  border-bottom: 1px dotted grey;
-  color: grey;
+  border-bottom: 1px dotted $color-btn-default;
+  color: $color-btn-default;
   text-transform: lowercase;
   padding: 10px;
   cursor: pointer;
@@ -209,13 +223,13 @@ body {
   &:hover,
   &:focus {
     outline: none;
-    color: yellow;
-    border-bottom-color: yellow;
+    color: $color-btn-close-hover;
+    border-bottom-color: $color-btn-close-hover;
   }
 }
 
 .gallery__pbar {
-  color: white;
+  color: $color-progress-bar;
   height: 50%;
   text-align: center;
   display: flex;
@@ -225,7 +239,7 @@ body {
 
 .gallery__pbar-counter {
   font-size: 90%;
-  color: lightgrey;
+  color: $color-progress-counter;
 }
 
 .gallery__btn-open {
@@ -241,7 +255,7 @@ body {
 
   &:before {
     content: ' ';
-    background-color: grey;
+    background-color: $color-btn-default;
     height: 3px;
     display: block;
     width: 100%;
@@ -250,7 +264,7 @@ body {
 
   &:after {
     content: ' ';
-    background-color: grey;
+    background-color: $color-btn-default;
     height: 3px;
     display: block;
     width: 100%;
@@ -260,7 +274,7 @@ body {
   &:hover,
   &:focus {
     outline: none;
-    background-color: lightgrey;
+    background-color: $color-icon;
     cursor: pointer;
   }
 
@@ -270,8 +284,8 @@ body {
   &:focus:after,
   &:hover .gallery__txt-open,
   &:focus .gallery__txt-open {
-    background-color: black;
-    color: black;
+    background-color: $color-btn-open-hover;
+    color: $color-btn-open-hover;
   }
 }
 
@@ -281,8 +295,8 @@ body {
   height: 3px;
   display: block;
   width: 100%;
-  color: grey;
-  background-color: grey;
+  color: $color-btn-default;
+  background-color: $color-btn-default;
 }
 
 @media (min-width: 500px) {
