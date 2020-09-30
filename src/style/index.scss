@@ -297,6 +297,8 @@ body {
   width: 100%;
   color: $color-btn-default;
   background-color: $color-btn-default;
+  text-indent: -1000px;
+  overflow: hidden;
 }
 
 @media (min-width: 500px) {

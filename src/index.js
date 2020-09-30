@@ -15,7 +15,7 @@ const config = {
   btnOpenContainer: 'gallery__cnt-open',
   btnOpenElement: 'gallery__btn-open',
   btnOpenInnerText: 'gallery__txt-open',
-  btnOpenTextValue: 'change picture',
+  btnOpenTextValue: 'Select the main image from the gallery',
   btnCloseElement: 'gallery__btn-close',
   progressBarContainer: 'gallery__pbar',
   progressBarCounter: 'gallery__pbar-counter',

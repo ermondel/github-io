@@ -69,8 +69,8 @@ function addBtnOpenToPage() {
   btn.className = this.btnOpenElement;
   text.className = this.btnOpenInnerText;
 
-  text.appendChild(document.createTextNode(this.btnOpenText));
-  btn.setAttribute('title', this.btnOpenText);
+  text.appendChild(document.createTextNode(this.btnOpenTextValue));
+  btn.setAttribute('title', this.btnOpenTextValue);
   btn.addEventListener('click', this.btnOpenClickHandler);
 
   btn.appendChild(text);
