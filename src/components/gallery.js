@@ -7,6 +7,13 @@ function btnCloseClickHandler() {
   this.galleryMainLayer.style.visibility = 'hidden';
 }
 
+function escPressHandler(event) {
+  if (event.keyCode === 27 && this.galleryMainLayer.style.visibility !== 'hidden') {
+    this.galleryMainLayer.style.visibility = 'hidden';
+    this.btnOpenRef.blur();
+  }
+}
+
 function galleryImagesLoaded() {
   this.progressBarContainer.style.display = 'none';
 
@@ -68,6 +75,7 @@ function addBtnOpenToPage() {
 
   btn.appendChild(text);
   this.btnOpenContainer.appendChild(btn);
+  this.btnOpenRef = btn;
 }
 
 function checkConfig() {
@@ -111,6 +119,7 @@ function selectElements() {
 function Gallery(config) {
   this.errors = [];
   this.loadedImages = [];
+  this.btnOpenRef;
 
   this.checkConfig = checkConfig.bind(this);
   this.selectElements = selectElements.bind(this);
@@ -128,9 +137,11 @@ function Gallery(config) {
     this.galleryItemClickHandler = galleryItemClickHandler.bind(this);
     this.loadGalleryImages = loadGalleryImages.bind(this);
     this.addBtnOpenToPage = addBtnOpenToPage.bind(this);
+    this.escPressHandler = escPressHandler.bind(this);
 
     this.btnCloseElement.addEventListener('click', this.btnCloseClickHandler);
     this.galleryItemList.addEventListener('click', this.galleryItemClickHandler);
+    document.addEventListener('keydown', this.escPressHandler, false);
     this.addBtnOpenToPage();
   }
 }
