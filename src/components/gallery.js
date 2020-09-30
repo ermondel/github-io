@@ -10,6 +10,8 @@ function btnCloseClickHandler() {
 function galleryImagesLoaded() {
   this.progressBarContainer.style.display = 'none';
 
+  this.loadedImages.sort(() => Math.random() - 0.5);
+
   this.loadedImages.forEach((image) => {
     const newBtnImg = document.createElement('button');
     newBtnImg.className = this.galleryItemElement;

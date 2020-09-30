@@ -1,18 +1,23 @@
-import im0 from '../assets/images/gallery/im0.jpg';
-import im1 from '../assets/images/gallery/im1.jpg';
-import im2 from '../assets/images/gallery/im2.jpg';
-import im3 from '../assets/images/gallery/im3.jpg';
-import im4 from '../assets/images/gallery/im4.jpg';
-import im5 from '../assets/images/gallery/im5.jpg';
-import im6 from '../assets/images/gallery/im6.jpg';
-import im7 from '../assets/images/gallery/im7.jpg';
-import im8 from '../assets/images/gallery/im8.jpg';
-import im9 from '../assets/images/gallery/im9.jpg';
-import im10 from '../assets/images/gallery/im10.jpg';
-import im11 from '../assets/images/gallery/im11.jpg';
-import im12 from '../assets/images/gallery/im12.jpg';
-import im13 from '../assets/images/gallery/im13.jpg';
-import im14 from '../assets/images/gallery/im14.jpg';
+import im0 from '../assets/images/gallery/25767703.jpg';
+import im1 from '../assets/images/gallery/29082861.jpg';
+import im2 from '../assets/images/gallery/30225101.jpg';
+import im3 from '../assets/images/gallery/36864091.jpg';
+import im4 from '../assets/images/gallery/39802576.jpg';
+import im5 from '../assets/images/gallery/43924656.jpg';
+import im6 from '../assets/images/gallery/45460473.jpg';
+import im7 from '../assets/images/gallery/53380732.jpg';
+import im8 from '../assets/images/gallery/58431180.jpg';
+import im9 from '../assets/images/gallery/58753706.jpg';
+import im10 from '../assets/images/gallery/60698005.jpg';
+import im11 from '../assets/images/gallery/68737224.jpg';
+import im12 from '../assets/images/gallery/73900954.jpg';
+import im13 from '../assets/images/gallery/74148012.jpg';
+import im14 from '../assets/images/gallery/75444642.jpg';
+import im15 from '../assets/images/gallery/89774345.jpg';
+import im16 from '../assets/images/gallery/92407114.jpg';
+import im17 from '../assets/images/gallery/93964801.jpg';
+import im18 from '../assets/images/gallery/94333181.jpg';
+import im19 from '../assets/images/gallery/95346711.jpg';
 
 export default [
   { path: im0, alt: 'photo 1' },
@@ -30,4 +35,9 @@ export default [
   { path: im12, alt: 'photo 13' },
   { path: im13, alt: 'photo 14' },
   { path: im14, alt: 'photo 15' },
+  { path: im15, alt: 'photo 16' },
+  { path: im16, alt: 'photo 17' },
+  { path: im17, alt: 'photo 18' },
+  { path: im18, alt: 'photo 19' },
+  { path: im19, alt: 'photo 20' },
 ];
