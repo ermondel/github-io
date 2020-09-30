@@ -77,6 +77,7 @@ function getPlugins() {
       template: './src/index.html',
       filename: 'index.html',
       minify: { collapseWhitespace: isProd },
+      favicon: './src/assets/images/favicon.ico',
     })
   );
 
