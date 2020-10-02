@@ -64,16 +64,20 @@ function loadGalleryImages() {
 
 function addBtnOpenToPage() {
   const btn = document.createElement('button');
-  const text = document.createElement('span');
+  const inner = document.createElement('span');
+  const hidden = document.createElement('span');
+  const text = document.createTextNode(this.btnOpenTextValue);
 
   btn.className = this.btnOpenElement;
-  text.className = this.btnOpenInnerText;
+  inner.className = this.btnOpenInnerText;
+  hidden.className = this.btnOpenInnerText + '--hidden';
 
-  text.appendChild(document.createTextNode(this.btnOpenTextValue));
   btn.setAttribute('title', this.btnOpenTextValue);
   btn.addEventListener('click', this.btnOpenClickHandler);
 
-  btn.appendChild(text);
+  hidden.appendChild(text);
+  inner.appendChild(hidden);
+  btn.appendChild(inner);
   this.btnOpenContainer.appendChild(btn);
   this.btnOpenRef = btn;
 }
