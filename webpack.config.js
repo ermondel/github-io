@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
@@ -80,6 +81,19 @@ function getPlugins() {
       favicon: './src/assets/images/favicon.ico',
     })
   );
+
+  if (isProd) {
+    plugins.push(
+      new HtmlWebpackPartialsPlugin({
+        path: './src/partials/analytics.html',
+        location: 'head',
+        priority: 'high',
+        options: {
+          ga_property_id: 'UA-177880035-1',
+        },
+      })
+    );
+  }
 
   plugins.push(new CleanWebpackPlugin());
 
