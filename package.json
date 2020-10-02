@@ -1,6 +1,6 @@
 {
   "name": "github-io",
-  "version": "0.15.7",
+  "version": "0.15.8",
   "private": true,
   "homepage": "https://github.com/ermondel/github-io#readme",
   "description": "ermondel.github.io source",
@@ -28,7 +28,6 @@
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/polyfill": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
-    "@babel/preset-react": "^7.10.4",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -53,8 +52,6 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "normalize.css": "^8.0.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "normalize.css": "^8.0.1"
   }
 }
