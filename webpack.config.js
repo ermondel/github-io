@@ -8,6 +8,7 @@ const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
+const isBuild = process.env.NODE_MODE === 'build';
 
 // func
 function optimization() {
@@ -82,7 +83,7 @@ function getPlugins() {
     })
   );
 
-  if (isProd) {
+  if (isBuild) {
     plugins.push(
       new HtmlWebpackPartialsPlugin({
         path: './src/partials/analytics.html',
@@ -158,14 +159,6 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: jsLoaders(),
-      },
-      {
-        test: /\.jsx$/,
-        exclude: /node_modules/,
-        loader: {
-          loader: 'babel-loader',
-          options: babelOptions(),
-        },
       },
       {
         test: /\.html$/,

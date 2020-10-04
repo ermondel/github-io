@@ -1,6 +1,6 @@
 {
   "name": "github-io",
-  "version": "0.15.10",
+  "version": "0.16.10",
   "private": true,
   "homepage": "https://github.com/ermondel/github-io#readme",
   "description": "ermondel.github.io source",
@@ -9,9 +9,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --mode development",
-    "build": "cross-env NODE_ENV=production webpack --mode production",
-    "watch": "cross-env NODE_ENV=development webpack --mode development --watch",
+    "prod": "cross-env NODE_ENV=production webpack --mode production",
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
+    "build": "cross-env NODE_ENV=production NODE_MODE=build webpack --mode production",
     "stats": "webpack --json > stats/stats.json && webpack-bundle-analyzer stats/stats.json",
     "deploy": "gh-pages -d dist"
   },
