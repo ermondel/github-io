@@ -4,11 +4,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
-const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
-const isBuild = process.env.NODE_MODE === 'build';
+const isBuild = process.env.NODE_MODE === 'build' ? true : false;
 
 // func
 function optimization() {
@@ -75,26 +74,15 @@ function getPlugins() {
 
   plugins.push(
     new HtmlWebpackPlugin({
-      inject: 'body',
-      template: './src/index.html',
+      template: './src/template.ejs',
       filename: 'index.html',
       minify: { collapseWhitespace: isProd },
       favicon: './src/assets/images/favicon.ico',
+      templateParameters: {
+        analytics: isBuild,
+      },
     })
   );
-
-  if (isBuild) {
-    plugins.push(
-      new HtmlWebpackPartialsPlugin({
-        path: './src/partials/analytics.html',
-        location: 'head',
-        priority: 'high',
-        options: {
-          ga_property_id: 'UA-177880035-1',
-        },
-      })
-    );
-  }
 
   plugins.push(new CleanWebpackPlugin());
 

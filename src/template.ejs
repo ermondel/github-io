@@ -1,6 +1,12 @@
+<%=require("./assets/images/main_image.jpg").src%>
+<%=require("./assets/images/spinner.svg").src%>
+<%=require("./assets/images/linkedin_icon.png").src%>
+<%=require("./assets/images/github_icon.png").src%>
+<%=require("./assets/images/email_icon.png").src%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <%if (analytics) { %> <%=require("./partials/analytics.html")%> <% } %>
     <meta charset="UTF-8" />
     <link rel="shortcut icon" href="favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
