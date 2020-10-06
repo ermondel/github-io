@@ -1,10 +1,23 @@
 import './style/index.scss';
 import Gallery from './components/gallery';
 import images from './components/images';
+import pleaseWait from './assets/images/please-wait.png';
 
 const mainImage = document.getElementById('main_image');
 
-const changeMainImage = (src) => (mainImage.src = src);
+const changeMainImage = (src, pleaseWaitImg) => {
+  let start = true;
+  mainImage.src = pleaseWaitImg.src;
+  mainImage.onload = function () {
+    console.log(mainImage.src);
+    if (start) {
+      setTimeout(() => {
+        mainImage.src = src;
+        start = false;
+      }, 300);
+    }
+  };
+};
 
 const config = {
   galleryImageList: images,
@@ -22,7 +35,7 @@ const config = {
   imageClickHandler: changeMainImage,
 };
 
-const mainGallery = new Gallery(config);
+const mainGallery = new Gallery(config, pleaseWait);
 
 if (mainGallery.errors) {
   for (let i in mainGallery.errors) console.log(mainGallery.errors[i]);
