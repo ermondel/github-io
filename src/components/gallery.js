@@ -34,10 +34,10 @@ function galleryItemClickHandler(event) {
 
   if (tag === 'img') {
     this.btnCloseClickHandler();
-    this.imageClickHandler(event.target.src, this.pleaseWaitImg);
+    this.imageClickHandler(event.target.src);
   } else if (tag === 'button') {
     this.btnCloseClickHandler();
-    this.imageClickHandler(event.target.value, this.pleaseWaitImg);
+    this.imageClickHandler(event.target.value);
   }
 }
 
@@ -120,7 +120,7 @@ function selectElements() {
   if (!this.progressBarCounter) this.errors.push(info + 'progress bar -> counter');
 }
 
-function Gallery(config, pleaseWaitPathImg) {
+function Gallery(config) {
   this.errors = [];
   this.loadedImages = [];
   this.btnOpenRef;
@@ -134,21 +134,7 @@ function Gallery(config, pleaseWaitPathImg) {
   this.checkConfig();
   this.selectElements();
 
-  const self = this;
-  this.pleaseWaitImg;
-
   if (!this.errors.length) {
-    // test
-    const pleaseWaitElImg = document.createElement('img');
-    pleaseWaitElImg.setAttribute('alt', 'loading... please wait');
-    pleaseWaitElImg.className = 'please-wait-img';
-    pleaseWaitElImg.src = pleaseWaitPathImg;
-    pleaseWaitElImg.onload = function () {
-      console.log('--- OK test blank img loaded');
-      self.pleaseWaitImg = this;
-    };
-    //
-
     this.btnOpenClickHandler = btnOpenClickHandler.bind(this);
     this.btnCloseClickHandler = btnCloseClickHandler.bind(this);
     this.galleryImagesLoaded = galleryImagesLoaded.bind(this);

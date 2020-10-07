@@ -1,22 +1,46 @@
 import './style/index.scss';
 import Gallery from './components/gallery';
 import images from './components/images';
-import pleaseWait from './assets/images/please-wait.png';
 
 const mainImage = document.getElementById('main_image');
+const headerImg = document.querySelector('.header__img');
 
-const changeMainImage = (src, pleaseWaitImg) => {
-  let start = true;
-  mainImage.src = pleaseWaitImg.src;
-  mainImage.onload = function () {
-    console.log(mainImage.src);
-    if (start) {
-      setTimeout(() => {
+const changeMainImage = (src) => {
+  new Promise((resolve) => {
+    let fadeCounter = 100;
+    let fadeTimer = setInterval(() => {
+      if (fadeCounter > 0) {
+        mainImage.style.opacity = --fadeCounter / 100;
+      } else {
+        clearInterval(fadeTimer);
+        headerImg.style.backgroundPosition = '0px 0px';
+        resolve();
+        return;
+      }
+    }, 1);
+  })
+    .then(() => {
+      return new Promise((resolve) => {
         mainImage.src = src;
-        start = false;
-      }, 300);
-    }
-  };
+        mainImage.onload = resolve;
+      });
+    })
+    .then(() => {
+      headerImg.style.backgroundPosition = '-200px 0px';
+
+      return new Promise((resolve) => {
+        let showCounter = 0;
+        let showTimer = setInterval(() => {
+          if (showCounter < 100) {
+            mainImage.style.opacity = ++showCounter / 100;
+          } else {
+            clearInterval(showTimer);
+            resolve();
+            return;
+          }
+        }, 1);
+      });
+    });
 };
 
 const config = {
@@ -35,7 +59,7 @@ const config = {
   imageClickHandler: changeMainImage,
 };
 
-const mainGallery = new Gallery(config, pleaseWait);
+const mainGallery = new Gallery(config);
 
 if (mainGallery.errors) {
   for (let i in mainGallery.errors) console.log(mainGallery.errors[i]);
