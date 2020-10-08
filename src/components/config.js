@@ -1,0 +1,15 @@
+export default {
+  gallery_main_layer: 'gallery',
+  gallery_item_list: 'gallery__list',
+  gallery_item_element: 'gallery__item',
+  gallery_item_image: 'gallery__img',
+  button_open_container: 'gallery__cnt-open',
+  button_open_element: 'gallery__btn-open',
+  button_open_inner_text: 'gallery__txt-open',
+  button_open_text_value: 'Select the main image from the gallery',
+  button_close_element: 'gallery__btn-close',
+  progress_bar_container: 'gallery__pbar',
+  progress_bar_counter: 'gallery__pbar-counter',
+  main_image_container: 'header__img',
+  main_image_element: 'main_image',
+};
