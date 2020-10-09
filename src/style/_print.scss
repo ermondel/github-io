@@ -1,0 +1,39 @@
+@media print {
+  #main_image {
+    display: none;
+  }
+
+  .main {
+    margin-top: 50px;
+    border-top: 1px solid lightgrey;
+  }
+
+  .footer {
+    position: static;
+  }
+
+  .icons {
+    display: block;
+  }
+
+  .icons__link {
+    display: block;
+    border: none;
+  }
+
+  .icons__img {
+    display: none;
+  }
+
+  #linkedin-link::after {
+    content: 'https://www.linkedin.com/in/serhii-h-403150199';
+  }
+
+  #github-link::after {
+    content: 'https://github.com/ermondel';
+  }
+
+  #email-link::after {
+    content: 'ermondel@protonmail.com';
+  }
+}
