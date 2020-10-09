@@ -1,0 +1,66 @@
+.header {
+  position: relative;
+}
+
+.header__img {
+  width: 100%;
+  min-height: 100px;
+  height: auto;
+  border-bottom-right-radius: 550px 250px;
+  border-bottom-left-radius: 10px 10px;
+  background-image: url('../assets/images/please-wait.png');
+  background-position: -200px 0px;
+  background-repeat: no-repeat;
+}
+
+.about {
+  position: absolute;
+  right: 20px;
+  bottom: -32px;
+  z-index: 1;
+  font-size: 24px;
+  text-align: right;
+  color: $color-main;
+  font-weight: 100;
+}
+
+.about__txt {
+  padding: 0;
+  margin: 0 0 20px 0;
+  font-weight: normal;
+  font-size: inherit;
+
+  &:last-child {
+    margin-bottom: 0px;
+  }
+}
+
+@media (max-width: 460px) {
+  .about {
+    bottom: -50px;
+  }
+}
+
+@media (max-width: 400px) {
+  .about {
+    bottom: -65px;
+  }
+}
+
+@media (max-width: 340px) {
+  .about {
+    bottom: -80px;
+  }
+}
+
+@media (max-width: 300px) {
+  .about {
+    bottom: -100px;
+  }
+}
+
+@media (max-width: 960px) {
+  .header__img {
+    border-bottom-left-radius: 15px 3px;
+  }
+}

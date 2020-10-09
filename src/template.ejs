@@ -1,8 +1,3 @@
-<%=require("./assets/images/main_image.jpg").src%>
-<%=require("./assets/images/spinner.svg").src%>
-<%=require("./assets/images/linkedin_icon.png").src%>
-<%=require("./assets/images/github_icon.png").src%>
-<%=require("./assets/images/email_icon.png").src%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,80 +10,8 @@
   </head>
   <body>
     <div class="container">
-      <header class="header">
-        <div class="header__img">
-          <img
-            src="assets/images/main_image.jpg"
-            alt="Photo of the forest"
-            class="header__img"
-            id="main_image"
-          />
-        </div>
-        <div class="about">
-          <h1 class="about__txt">Serhii</h1>
-          <h2 class="about__txt">Web developer</h2>
-          <p class="about__txt">Ukraine, Kiev</p>
-        </div>
-      </header>
-      <main class="main">
-        <div class="gallery__cnt-open"></div>
-        <div class="gallery">
-          <div class="gallery__pbar">
-            <div class="gallery__pbar-content">
-              <img src="assets/images/spinner.svg" alt="loading bar" />
-            </div>
-            <div class="gallery__pbar-counter">0/0</div>
-          </div>
-          <div class="gallery__list"></div>
-          <div class="gallery__cnt-close">
-            <button class="gallery__btn-close">close</button>
-          </div>
-        </div>
-      </main>
-      <footer class="footer">
-        <div class="icons">
-          <a
-            href="https://www.linkedin.com/in/serhii-h-403150199"
-            class="icons__link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              src="assets/images/linkedin_icon.png"
-              class="icons__img"
-              alt="linkedin link"
-              width="32"
-          /></a>
-          <a
-            href="https://github.com/ermondel"
-            class="icons__link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              src="assets/images/github_icon.png"
-              class="icons__img"
-              alt="github link"
-              width="32"
-          /></a>
-          <a
-            href="mailto:ermondel@protonmail.com"
-            class="icons__link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              src="assets/images/email_icon.png"
-              class="icons__img"
-              alt="email link"
-              width="32"
-          /></a>
-        </div>
-        <!-- linkedin icon https://www.flaticon.com/authors/google -->
-        <!-- github icon https://github.com/logos -->
-        <!-- email icon https://www.flaticon.com/authors/google -->
-        <!-- favicon - Circle Icons, by Nick Roach, https://www.iconfinder.com -->
-      </footer>
+      <%=require("./partials/header.html")%> <%=require("./partials/main.html")%>
+      <%=require("./partials/footer.html")%> <%=require("./partials/sources.html")%>
     </div>
   </body>
 </html>
