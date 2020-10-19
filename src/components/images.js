@@ -23,7 +23,7 @@ export default [
   { path: im0, alt: 'Stream in the Syretsky Gai' },
   { path: im1, alt: 'View of the left bank of Kiev' },
   { path: im2, alt: 'Kyiv Metro Bridge' },
-  { path: im3, alt: 'Kamianets-Podilskyi Castle' },
+  { path: im3, alt: 'Khotyn Fortress' },
   {
     path: im4,
     alt: 'National Museum of the History of Ukraine in the Second World War',
